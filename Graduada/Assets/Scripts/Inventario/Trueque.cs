@@ -12,6 +12,7 @@ public class Trueque : MonoBehaviour
     private List<int> ordenContactos;
     private List<GameObject> contactos;
     private int anteriorIndex = 5;
+    public List<GameObject> texto;
     
     void Start()
     {
@@ -96,12 +97,12 @@ public class Trueque : MonoBehaviour
         Debug.Log("asdsfñkuaszdghfhase");
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
-        GameObject.Find("Abandonar").SetActive(true);
+        texto[anteriorIndex].SetActive(true);
     }
     public void cancel(){
         Debug.Log("aldiodufgta");
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
-        GameObject.Find("Abandonar").SetActive(true);
+        texto[anteriorIndex].SetActive(true);
     }
 }
