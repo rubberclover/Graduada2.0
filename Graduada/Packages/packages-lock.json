@@ -89,14 +89,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "dev.yarnspinner.unity": {
-      "version": "file:YarnSpinner-Unity-2.0.1",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.textmeshpro": "1.4.1"
-      }
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
