@@ -17,6 +17,9 @@ public class InventorySystem : MonoBehaviour
     public List<InventoryItem> inventoryToLoad;
 
     public GameObject inventoryPanel;
+
+    [SerializeField] private InventoryItemData pizzaItemData;
+    [SerializeField] private InventoryItemData beastItemData;
     
 
     private void Awake()
@@ -72,6 +75,67 @@ public class InventorySystem : MonoBehaviour
         }
 
         inventoryPanel.GetComponent<Panel>().UpdateInventory();
+    }
+
+    public bool pizza(){
+        bool pizza = false;
+        int pizzaPos = -1;
+        
+        for(int i = 0; i < inventoryToLoad.Count; i++){
+            if(inventoryToLoad[i].data == pizzaItemData ){
+                pizza = true;
+                pizzaPos = i;
+            }
+        }
+
+        if(pizza && (pizzaPos != -1)){
+  
+            if(inventoryToLoad[pizzaPos].stackSize == 1){
+                inventoryToLoad.RemoveAt(pizzaPos);
+                for(int i = 0; i < inventory.Count; i++){
+                    if(inventory[i].data == pizzaItemData){
+                        inventory.RemoveAt(i);
+                    }
+                }
+            } else{
+                inventoryToLoad[pizzaPos].RemoveFromStack();
+            }
+
+            inventoryPanel.GetComponent<Panel>().UpdateInventory();
+        }
+        
+        return pizza;
+    }
+
+    public bool beast(){
+        bool beast = false;
+        int beastPos = -1;
+        
+        for(int i = 0; i < inventoryToLoad.Count; i++){
+            if(inventoryToLoad[i].data == beastItemData ){
+                print("encontrado");
+                beast = true;
+                beastPos = i;
+            }
+        }
+
+        if(beast && (beastPos != -1)){
+
+            if(inventoryToLoad[beastPos].stackSize == 1){
+                inventoryToLoad.RemoveAt(beastPos);
+                for(int i = 0; i < inventory.Count; i++){
+                    if(inventory[i].data == beastItemData){
+                        inventory.RemoveAt(i);
+                    }
+                }
+            } else{
+                inventoryToLoad[beastPos].RemoveFromStack();
+            }
+
+            inventoryPanel.GetComponent<Panel>().UpdateInventory();
+        }
+        
+        return beast;
     }
 
 }

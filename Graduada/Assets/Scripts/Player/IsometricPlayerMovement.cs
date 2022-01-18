@@ -17,6 +17,11 @@ public class IsometricPlayerMovement : MonoBehaviour
     private Vector3 forward, right, point, moveVector;
     private Animator _animator;
 
+    [SerializeField]
+    private bool boostVelAct;
+
+    [SerializeField] private GameObject inventoryObject;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -25,6 +30,7 @@ public class IsometricPlayerMovement : MonoBehaviour
         forward.y = 0;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+        boostVelAct = false;
     }
 
     void Update()
@@ -45,6 +51,10 @@ public class IsometricPlayerMovement : MonoBehaviour
             {
                 _animator.SetBool("jumping", true);
                 moveDirection.y = jumpSpeed;
+            }
+
+            if(Input.GetKeyDown("1") && !boostVelAct){
+                beastPower();
             }
         }
 
@@ -76,6 +86,23 @@ public class IsometricPlayerMovement : MonoBehaviour
         vida.LoseHealth();
     }
 
+    private void beastPower(){
+        if(inventoryObject.GetComponent<InventorySystem>().beast()){
+            print("AAAAAAAAAAAAAAAAAA");
+            StartCoroutine(esperar(10));
+            print("uff");
+        }
+    }
+    
+    private IEnumerator esperar(int segundos){
+        boostVelAct = true;
+        speed = 30;
+        //jumpSpeed = 25.0f;     
+        yield return new WaitForSeconds(segundos);
+        speed = 12;
+        jumpSpeed = 16.0f;
+        boostVelAct = false;
+    }
    
 }
 

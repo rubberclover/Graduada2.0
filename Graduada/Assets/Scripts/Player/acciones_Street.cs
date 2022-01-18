@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class acciones_Street : MonoBehaviour
 {
-    //Player player
     public GameObject persistentDataManager;
 
     ChangeLevelLogic level = new ChangeLevelLogic();
@@ -116,5 +115,4 @@ public class acciones_Street : MonoBehaviour
         persistentDataManager.GetComponent<PersistentData>().returnWithUber();
         level.start();
     }
-
 }

@@ -1441,7 +1441,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
+  inventoryToLoad: []
   inventoryPanel: {fileID: 57808058}
+  pizzaItemData: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
+  beastItemData: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
 --- !u!4 &244856780
 Transform:
   m_ObjectHideFlags: 0
@@ -8895,6 +8898,10 @@ PrefabInstance:
       propertyPath: MenuInventario
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3492480351257579174, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
+      propertyPath: inventoryObject
+      value: 
+      objectReference: {fileID: 244856778}
     - target: {fileID: 3653699107484209660, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
       propertyPath: cambita
       value: 
@@ -8903,6 +8910,10 @@ PrefabInstance:
       propertyPath: MenuMuerteUI
       value: 
       objectReference: {fileID: 595915478}
+    - target: {fileID: 3653699107484209660, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
+      propertyPath: inventoryObject
+      value: 
+      objectReference: {fileID: 244856778}
     - target: {fileID: 3653699107484209660, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
       propertyPath: corazones.Array.data[0]
       value: 
@@ -8919,6 +8930,10 @@ PrefabInstance:
       propertyPath: corazones.Array.data[3]
       value: 
       objectReference: {fileID: 27035345}
+    - target: {fileID: 7492002327532624459, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
+      propertyPath: inventoryObject
+      value: 
+      objectReference: {fileID: 244856778}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
 --- !u!1001 &3147763376470378841

@@ -9152,7 +9152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be885040f4bd21e459d63886ae9be35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
+  inventory:
+  - data: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
+    stackSize: 3
+  - data: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
+    stackSize: 3
   pizzaItemData: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
   beastItemData: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
 --- !u!4 &1404537349

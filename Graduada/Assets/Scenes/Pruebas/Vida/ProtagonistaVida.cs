@@ -10,6 +10,8 @@ public class ProtagonistaVida : MonoBehaviour
 
     public GameObject persistentDataManager;
 
+    [SerializeField] private GameObject inventoryObject;
+
     public GameObject MenuMuerteUI, cambita;
     public Image[] corazones;
     public int health;
@@ -57,9 +59,12 @@ public class ProtagonistaVida : MonoBehaviour
     public void GainHealth()
     {
         if (corazones.Length > health)
-        { //No puedes darte más vida de la máxima
-            corazones[health].enabled = true;
-            health++;
+        {
+            if(inventoryObject.GetComponent<InventorySystem>().pizza()){
+                corazones[health].enabled = true;
+                health++;
+                animationPizza();
+            }
         }
     }
     private void Update()
@@ -94,4 +99,6 @@ public class ProtagonistaVida : MonoBehaviour
         }
         
     }
+
+    private void animationPizza(){}
 }
