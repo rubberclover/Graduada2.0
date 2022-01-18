@@ -14,6 +14,9 @@ public class PersistentData : MonoBehaviour
     private float conservasUber;
     private float conservasMuerte;
 
+    [SerializeField] private InventoryItemData pizzaItemData;
+    [SerializeField] private InventoryItemData beastItemData;
+
 
     void Awake(){
 
@@ -46,7 +49,7 @@ public class PersistentData : MonoBehaviour
     }
 
     public void returnHome(float conservas){
-                print("Ha vuelto con el Uber");
+        print("Ha vuelto con el Uber");
         List<InventoryItem> inventoryObtained = GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventory;
         bool exist = false;
 
@@ -109,6 +112,33 @@ public class PersistentData : MonoBehaviour
     }
 
 
+    public List<InventoryItem> loadData(){
+        print("loading inventory");
+
+        List<InventoryItem> inventoryToLoad = new List<InventoryItem>();
+
+        for(int i = 0; i < inventory.Count; i++){
+            bool rmv = false;
+
+            if(inventory[i].data == pizzaItemData){
+                int pizzaStack = inventory[i].stackSize;
+                print("PIZZAAS " + pizzaStack);
+                rmv = true;
+            }else if(inventory[i].data == beastItemData){
+                int beastStack = inventory[i].stackSize;
+                print("BEAST " + beastStack);
+                rmv = true;    
+            }
+
+            if(rmv){
+                inventoryToLoad.Add(inventory[i]);
+                inventory.RemoveAt(i); 
+                i--;
+            } 
+        }
+
+        return inventoryToLoad;
+    }
 
 
     

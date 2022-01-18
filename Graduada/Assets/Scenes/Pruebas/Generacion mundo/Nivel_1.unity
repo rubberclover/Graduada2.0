@@ -8884,6 +8884,14 @@ PrefabInstance:
       value: Protagonista
       objectReference: {fileID: 0}
     - target: {fileID: 3492480351257579174, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
+      propertyPath: beastItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
+    - target: {fileID: 3492480351257579174, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
+      propertyPath: pizzaItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
+    - target: {fileID: 3492480351257579174, guid: ac095b7ade7b6894c845c2160f984a94, type: 3}
       propertyPath: MenuInventario
       value: 
       objectReference: {fileID: 0}

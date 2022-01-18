@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class acciones_Street : MonoBehaviour
 {
-
     //Player player
     public GameObject persistentDataManager;
 
@@ -117,5 +116,5 @@ public class acciones_Street : MonoBehaviour
         persistentDataManager.GetComponent<PersistentData>().returnWithUber();
         level.start();
     }
-    
+
 }

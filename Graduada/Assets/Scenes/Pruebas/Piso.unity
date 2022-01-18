@@ -9153,6 +9153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
+  pizzaItemData: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
+  beastItemData: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
 --- !u!4 &1404537349
 Transform:
   m_ObjectHideFlags: 0

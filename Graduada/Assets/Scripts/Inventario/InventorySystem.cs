@@ -14,13 +14,20 @@ public class InventorySystem : MonoBehaviour
     [SerializeField]
     public List<InventoryItem> inventory;
 
+    public List<InventoryItem> inventoryToLoad;
+
     public GameObject inventoryPanel;
+    
 
     private void Awake()
     {
         current = this;
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
+
+        inventoryToLoad = GameObject.Find("Persistent Inventory").GetComponent<PersistentData>().loadData();
+        print("INVENTORY TO LOAD CREATED: " + inventoryToLoad);
+        inventoryLoad();
     }
 
     public InventoryItem Get(InventoryItemData referenceData)
@@ -58,6 +65,15 @@ public class InventorySystem : MonoBehaviour
             inventoryPanel.GetComponent<Panel>().UpdateInventory();
         }
     }
+
+    private void inventoryLoad(){
+        for(int i = 0; i< inventoryToLoad.Count; i++){
+            inventory.Add(inventoryToLoad[i]);
+        }
+
+        inventoryPanel.GetComponent<Panel>().UpdateInventory();
+    }
+
 }
 
 
