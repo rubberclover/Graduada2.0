@@ -50,7 +50,15 @@ public class PersistentData : MonoBehaviour
 
     public void returnHome(float conservas){
         print("Ha vuelto con el Uber");
-        List<InventoryItem> inventoryObtained = GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventory;
+        List<InventoryItem> totalInventory = GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventory;
+        List<InventoryItem> inventoryObtained = new List<InventoryItem>();
+        
+        for(int i = 0; i < totalInventory.Count; i++){
+            if(totalInventory[i].data != pizzaItemData && totalInventory[i].data != beastItemData){
+                inventoryObtained.Add(totalInventory[i]);
+            }
+        }
+
         bool exist = false;
 
         int totalItems = 0;
@@ -98,7 +106,7 @@ public class PersistentData : MonoBehaviour
 
                 if(exist) break;
             }
-        
+
         }
 
         for(int i =0; i < stacksBorrar.Count; i++){
@@ -106,6 +114,8 @@ public class PersistentData : MonoBehaviour
         }
 
         print("DESPUES DE HACER LOS CALCULOS DE STACK, HAY QUE METER: " + inventoryObtained.Count);
+
+        inventoryObtained.AddRange(GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventoryToLoad);
 
         for(int i = 0; i < inventoryObtained.Count; i ++) inventory.Add(inventoryObtained[i]);
 
