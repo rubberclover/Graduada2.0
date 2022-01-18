@@ -16,6 +16,9 @@ public class Drops : MonoBehaviour
     private double chanceVodka;
     private double chanceManifiesto;
     private double chanceMovil;
+    private double dropChance;
+
+    private int numDrops;
 
     void Start()
     {
@@ -25,31 +28,33 @@ public class Drops : MonoBehaviour
         idManifiesto = 3;
         idMovil = 4;
         
-        chanceRefresco =1f; //0.35
-        chanceVodka = 1f; //0.60
-        chanceManifiesto = 0f; //0.80
-        chanceMovil = 1f; //0.95
+        chanceRefresco = 0.35f; //0.35
+        chanceVodka = 0.60f; //0.60
+        chanceManifiesto = 0.80f; //0.80
+        chanceMovil = 0.95f; //0.95
     }
 
     public void Drop(Vector3 dropPosition){
-        int numDrops = Random.Range(1,2);
+        numDrops = Random.Range(1,3);
+        print("Numero de drops = " + numDrops);
 
         for( int j = 0; j< numDrops; j++){
-            double dropChance = Random.Range(0.0f,1f);
+            dropChance = Random.Range(0.0f,1f);
+            print("dropChance= " + dropChance);
 
             if(dropChance >= chanceMovil){
                 print("Dropeado un " + "Movil");
                 Instantiate(dropeableItems[idMovil], dropPosition  , Quaternion.identity);
             }
-            if(dropChance >= chanceManifiesto){
+            else if(dropChance >= chanceManifiesto){
                 print("Dropeado un " + "Manifiesto");
                 Instantiate(dropeableItems[idManifiesto], dropPosition  , Quaternion.identity);
             }
-            if(dropChance >= chanceVodka){
+            else if(dropChance >= chanceVodka){
                 print("Dropeado un " + "Vodka");
                 Instantiate(dropeableItems[idVodka], dropPosition  , Quaternion.identity);
             }
-            if(dropChance >= chanceRefresco){
+            else if(dropChance >= chanceRefresco){
                 print("Dropeado un " + "Refresco");
                 Instantiate(dropeableItems[idRefresco], dropPosition  , Quaternion.identity);
             }
