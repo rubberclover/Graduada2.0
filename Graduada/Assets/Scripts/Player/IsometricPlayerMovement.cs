@@ -21,6 +21,8 @@ public class IsometricPlayerMovement : MonoBehaviour
     private bool boostVelAct;
 
     [SerializeField] private GameObject inventoryObject;
+    [SerializeField] private GameObject velocityIcon;
+    [SerializeField] private GameObject music; 
 
     void Start()
     {
@@ -53,7 +55,7 @@ public class IsometricPlayerMovement : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
 
-            if(Input.GetKeyDown("1") && !boostVelAct){
+            if(Input.GetKeyDown("2") && !boostVelAct){
                 beastPower();
             }
         }
@@ -97,11 +99,13 @@ public class IsometricPlayerMovement : MonoBehaviour
     private IEnumerator esperar(int segundos){
         boostVelAct = true;
         speed = 30;
-        //jumpSpeed = 25.0f;     
+        velocityIcon.SetActive(true);
+        music.GetComponent<AudioSource>().pitch = 2.0f;
         yield return new WaitForSeconds(segundos);
         speed = 12;
-        jumpSpeed = 16.0f;
         boostVelAct = false;
+        music.GetComponent<AudioSource>().pitch= 1.0f;
+        velocityIcon.SetActive(false);
     }
    
 }
