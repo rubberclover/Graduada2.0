@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebc362248e2a0d646b30f3d0b1487c2c, type: 3}
-  m_Name: calcetinItemData
+  m_Name: bookItemData
   m_EditorClassIdentifier: 
-  id: 1
-  displayName: Calcetin
-  icon: {fileID: 21300000, guid: f0eef0caa3e8e504c930aac764784bd4, type: 3}
-  prefab: {fileID: 2493792927869389195, guid: 3e5c03f9f2a96e64ebe0f7a2337d971d, type: 3}
+  id: 3
+  displayName: Book
+  icon: {fileID: 21300000, guid: fd44bec1307a9064e95af1b55663b2a9, type: 3}
+  prefab: {fileID: 7606994575267586846, guid: 49518ca80f1da124496773e0fb5e92ab, type: 3}

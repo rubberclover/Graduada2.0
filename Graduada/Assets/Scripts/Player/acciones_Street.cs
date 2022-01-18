@@ -64,6 +64,7 @@ public class acciones_Street : MonoBehaviour
             }
         }
         if(col.CompareTag("object")){
+            print("AAAAAAAAAAAAAA ITEM A LA VISTA");
             pick = true;
             item = col.gameObject;
             itemobject = item.GetComponent<ItemObject>();
