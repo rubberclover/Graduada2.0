@@ -13,6 +13,7 @@ public class ProtagonistaVida : MonoBehaviour
     [SerializeField] private GameObject inventoryObject;
 
     [SerializeField] private GameObject healthIcon;
+    [SerializeField] private GameObject noItem;
     [SerializeField] private GameObject music; 
 
     public GameObject MenuMuerteUI, cambita;
@@ -66,9 +67,11 @@ public class ProtagonistaVida : MonoBehaviour
             if(inventoryObject.GetComponent<InventorySystem>().pizza()){
                 corazones[health].enabled = true;
                 health++;
-                StartCoroutine(esperar(1));
+                StartCoroutine(imageShow());
+            }else{
+                StartCoroutine(noIconShow());
             }
-        }
+        }else StartCoroutine(noIconShow());
     }
     private void Update()
     {
@@ -79,13 +82,8 @@ public class ProtagonistaVida : MonoBehaviour
         {
             LoseHealth();
         }
-        if (Input.GetKeyDown("1"))
+        if (Input.GetButton("item1"))
         {
-            mouse = Input.mousePosition;
-            castPoint = Camera.main.ScreenPointToRay(mouse);
-            direction = (castPoint.direction - transform.position).normalized;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 500000f);
-            Debug.Log(direction);
             GainHealth();
         }
     }
@@ -103,9 +101,15 @@ public class ProtagonistaVida : MonoBehaviour
         
     }
 
-    private IEnumerator esperar(int segundos){
+    private IEnumerator imageShow(){
         healthIcon.SetActive(true);
-        yield return new WaitForSeconds(segundos);
+        yield return new WaitForSeconds(1);
         healthIcon.SetActive(false);
+    }
+
+    private IEnumerator noIconShow(){
+        noItem.SetActive(true);
+        yield return new WaitForSeconds(1);
+        noItem.SetActive(false);
     }
 }

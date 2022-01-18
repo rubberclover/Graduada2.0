@@ -23,6 +23,7 @@ public class IsometricPlayerMovement : MonoBehaviour
     [SerializeField] private GameObject inventoryObject;
     [SerializeField] private GameObject velocityIcon;
     [SerializeField] private GameObject music; 
+    [SerializeField] private GameObject noItem;
 
     void Start()
     {
@@ -55,8 +56,8 @@ public class IsometricPlayerMovement : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
 
-            if(Input.GetKeyDown("2") && !boostVelAct){
-                beastPower();
+            if(Input.GetButton("item2")){
+                if(!boostVelAct){beastPower();} else StartCoroutine(noIconShow());
             }
         }
 
@@ -93,7 +94,9 @@ public class IsometricPlayerMovement : MonoBehaviour
             print("AAAAAAAAAAAAAAAAAA");
             StartCoroutine(esperar(10));
             print("uff");
-        }
+        }else{
+            StartCoroutine(noIconShow());
+        }   
     }
     
     private IEnumerator esperar(int segundos){
@@ -106,6 +109,12 @@ public class IsometricPlayerMovement : MonoBehaviour
         boostVelAct = false;
         music.GetComponent<AudioSource>().pitch= 1.0f;
         velocityIcon.SetActive(false);
+    }
+
+    private IEnumerator noIconShow(){
+        noItem.SetActive(true);
+        yield return new WaitForSeconds(1);
+        noItem.SetActive(false);
     }
    
 }
