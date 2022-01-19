@@ -27,10 +27,8 @@ public class InventorySystem : MonoBehaviour
         current = this;
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
-
-        inventoryToLoad = GameObject.Find("Persistent Inventory").GetComponent<PersistentData>().loadData();
-        print("INVENTORY TO LOAD CREATED: " + inventoryToLoad);
-        inventoryLoad();
+        
+        //inventoryLoad();
     }
 
     public InventoryItem Get(InventoryItemData referenceData)
@@ -69,7 +67,10 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void inventoryLoad(){
+    public void inventoryLoad(){
+        inventoryToLoad = GameObject.Find("Persistent Inventory").GetComponent<PersistentData>().loadData();
+        print("INVENTORY TO LOAD CREATED: " + inventoryToLoad);
+
         for(int i = 0; i< inventoryToLoad.Count; i++){
             inventory.Add(inventoryToLoad[i]);
         }
