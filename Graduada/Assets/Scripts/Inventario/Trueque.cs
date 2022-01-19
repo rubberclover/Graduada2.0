@@ -15,12 +15,18 @@ public class Trueque : MonoBehaviour
     public List<GameObject> texto;
     public List<GameObject> textosOrdenados;
     public List<InventoryItemData> objetos;
+    public List<InventoryItemData> objetosOrdenados;
+
+    public List<InventoryItemData> objetosDar;
+    public List<InventoryItemData> objetosDarOrdenados;
+    public InventoryItemData prueba;
     public GameObject inventario;
     private PersistentData inventory;
     
     void Start()
     {
        inventory = inventario.GetComponent<PersistentData>();
+       inventory.AddT(prueba);
        orden = new List<GameObject>();
        nums = new List<int>();
        ordenContactos = new List<int>();
@@ -41,10 +47,16 @@ public class Trueque : MonoBehaviour
         int index = Random.Range(0, dialogos.Count);
         GameObject conver = dialogos[index];
         GameObject abandono = texto[index];
+        InventoryItemData obj = objetos[index];
+        InventoryItemData objDar = objetosDar[index];
         dialogos.RemoveAt(index);
         texto.RemoveAt(index);
+        objetos.RemoveAt(index);
+        objetosDar.RemoveAt(index);
         orden.Add(conver);
         textosOrdenados.Add(abandono);
+        objetosOrdenados.Add(obj);
+        objetosDarOrdenados.Add(objDar);
         if (dialogos.Count >= 1) {
             ordenar(dialogos);
         }
@@ -102,11 +114,13 @@ public class Trueque : MonoBehaviour
     }
 
     public void accept(){
-        GameObject.Find("Cruz").SetActive(false);
-        GameObject.Find("Tick").SetActive(false);
-        print(objetos[0]);
-        inventory.AddT(objetos[0]);
-        textosOrdenados[anteriorIndex].SetActive(true);
+        if(inventory.RemoveT(objetosDarOrdenados[anteriorIndex]) != null ){
+            inventory.AddT(objetosOrdenados[anteriorIndex]);
+            GameObject.Find("Cruz").SetActive(false);
+            GameObject.Find("Tick").SetActive(false);
+            textosOrdenados[anteriorIndex].SetActive(true);
+        }        
+        
     }
     public void cancel(){
         GameObject.Find("Cruz").SetActive(false);
