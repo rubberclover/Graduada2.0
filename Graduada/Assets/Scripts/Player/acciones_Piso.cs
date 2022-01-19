@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class acciones_Piso : MonoBehaviour
 {
+    public GameObject portatil;
+    private bool portatilActivo = false;
     ChangeLevelLogic level = new ChangeLevelLogic();
-    // Start is called before the first frame update
-    void Start()
-    {
-        //if se han enviado objetos then mostrar cartel
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape)){
+        if(Input.GetKey(KeyCode.Escape) && !portatilActivo){
+            Debug.Log(portatilActivo);
             Exit();
         }
     }
@@ -22,15 +20,32 @@ public class acciones_Piso : MonoBehaviour
     {
         if (Input.GetButton("Action"))
         {
-            if(col.CompareTag("zonaSalida"))
-            {
-                level.goStreets();
+            if(col.CompareTag("zonaSalida")) level.goStreets();
+            if(col.CompareTag("portatil")){
+                 portatil.SetActive(true);
+                 portatilActivo = true;
+                 Debug.Log(portatilActivo);
             }
+            
+        }
+        if(Input.GetKey(KeyCode.O)){ //Despues con el escape
+            if(col.CompareTag("portatil")){
+                portatil.SetActive(false);
+                StartCoroutine(esperar(10));
+                Debug.Log(portatilActivo);
+                portatilActivo = false;
+                Debug.Log(portatilActivo);
+            }
+                
         }
     }
 
     void Exit(){
         level.goMainMenu();
+    }
+
+    private IEnumerator esperar(int segundos){
+        yield return new WaitForSeconds(segundos);
     }
 
 }

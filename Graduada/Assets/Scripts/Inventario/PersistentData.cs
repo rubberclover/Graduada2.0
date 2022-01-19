@@ -17,6 +17,7 @@ public class PersistentData : MonoBehaviour
     [SerializeField] private InventoryItemData pizzaItemData;
     [SerializeField] private InventoryItemData beastItemData;
 
+
     public bool dialogPlayed;
 
 
@@ -158,6 +159,7 @@ public class PersistentData : MonoBehaviour
     
     public void Add(InventoryItemData referenceData)
     {
+        Debug.Log(referenceData);
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
             value.AddToStack();
         }
@@ -168,6 +170,41 @@ public class PersistentData : MonoBehaviour
             m_itemDictionary.Add(referenceData, newItem);
             print("SE HA AÑADIDO");
         }
+    }
+
+    public void AddT(InventoryItemData referenceData){
+        bool added = false;
+
+        for(int i = 0; i < inventory.Count; i++){
+            if(inventory[i].data == referenceData){
+                added = true;
+                inventory[i].AddToStack();
+            }
+        }
+
+        if(!added){
+            InventoryItem newItem = new InventoryItem(referenceData);
+            inventory.Add(newItem);
+        }
+    }
+
+    public InventoryItemData RemoveT(InventoryItemData referenceData){
+        InventoryItemData removed = null;
+
+        for(int i = 0; i < inventory.Count; i++){
+            if(inventory[i].data == referenceData){
+                inventory[i].RemoveFromStack();
+
+                removed = referenceData;
+
+                if(inventory[i].stackSize == 0){
+                    inventory.RemoveAt(i);
+                }
+
+            }
+        }
+
+        return removed;
     }
 
     public void Remove(InventoryItemData referenceData)
