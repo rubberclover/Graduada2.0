@@ -6,10 +6,11 @@ using UnityEngine.AI;
 public class vidaEnemigo : MonoBehaviour
 {
     //sistema dropeo
-  public Rigidbody rb;
-    public float pushOnDamageSpeed;
+  Rigidbody rb;
+    public float pushOnDamageSpeed = 3;
     public GameObject dropSystem;
-    private int health = 2;
+    private int health = 3;
+    GameObject jugador;
     AudioSource sonido;
     // Start is called before the first frame update
     Animator _animator;
@@ -21,6 +22,7 @@ public class vidaEnemigo : MonoBehaviour
     }
     void Start()
     {
+         jugador = GameObject.FindGameObjectWithTag("Player");
         dropSystem = GameObject.FindGameObjectWithTag("inventario");
         sonido = GameObject.Find("golpeEsther").GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
@@ -39,6 +41,7 @@ public class vidaEnemigo : MonoBehaviour
     {
         print("AAAAAAAAA");
         sonido.Play();
+         
         pushOnDamage();
         health--;
         
@@ -73,7 +76,17 @@ public class vidaEnemigo : MonoBehaviour
     }
 
     public void pushOnDamage(){      
+        rb.AddForce(jugador.transform.forward * pushOnDamageSpeed,ForceMode.Impulse);
         Debug.Log("Me empujan");
-        rb.AddRelativeForce(0, 0, pushOnDamageSpeed, ForceMode.Impulse);
+
+        print("Forward" + jugador.transform.forward);
+     /* 
+       Quaternion position = jugador.transform.rotation;
+      Vector3 movimiento = position * Vector3.forward;
+     print(movimiento);
+                   Vector3 move = movimiento * pushOnDamageSpeed;
+                    print(move);  */
+//transform.Translate(jugador.transform.forward * pushOnDamageSpeed * Time.deltaTime);
+ 
     }
 }
