@@ -7851,6 +7851,10 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -6737827761239856121, guid: 16559a2bdd6b9314fa9def57fd76e95d, type: 3}
+      propertyPath: m_Name
+      value: ordenador
+      objectReference: {fileID: 0}
+    - target: {fileID: -6737827761239856121, guid: 16559a2bdd6b9314fa9def57fd76e95d, type: 3}
       propertyPath: m_TagString
       value: portatil
       objectReference: {fileID: 0}

@@ -36,12 +36,9 @@ public class Trueque : MonoBehaviour
        for(int i = 0; i <4; i++){
            nums.Add(i);
        } 
-       arrayNum(nums);
+       if(dialogos.Count > 1) arrayNum(nums);
        activarContactos();
        ordenar(dialogos);
-    }
-    void Update(){
-        if(orden.Count < 4) ordenar(dialogos);
     }
 
 
@@ -73,6 +70,7 @@ public class Trueque : MonoBehaviour
         }
     }
     void activarContactos(){
+
         int j = 0;
         for(int i=0; i<16; i += 4){
             contactos.Add(todos[i+ordenContactos[j]]);
@@ -81,9 +79,6 @@ public class Trueque : MonoBehaviour
         for(int i=0; i<4; i++){
             contactos[i].SetActive(true);
         }
-    }
-    void Awake(){
-        DontDestroyOnLoad(gameObject);
     }
 
     public void contacto1(){
