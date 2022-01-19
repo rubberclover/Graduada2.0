@@ -10,6 +10,12 @@ public class ProtagonistaVida : MonoBehaviour
 
     public GameObject persistentDataManager;
 
+    [SerializeField] private GameObject inventoryObject;
+
+    [SerializeField] private GameObject healthIcon;
+    [SerializeField] private GameObject noItem;
+    [SerializeField] private GameObject music; 
+
     public GameObject MenuMuerteUI, cambita;
     public Image[] corazones;
     public int health;
@@ -57,9 +63,14 @@ public class ProtagonistaVida : MonoBehaviour
     public void GainHealth()
     {
         if (corazones.Length > health)
-        { //No puedes darte más vida de la máxima
-            corazones[health].enabled = true;
-            health++;
+        {
+            if(inventoryObject.GetComponent<InventorySystem>().pizza()){
+                corazones[health].enabled = true;
+                health++;
+                StartCoroutine(imageShow());
+            }else{
+                StartCoroutine(noIconShow());
+            }
         }
     }
     private void Update()
@@ -71,13 +82,8 @@ public class ProtagonistaVida : MonoBehaviour
         {
             LoseHealth();
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetButton("item1"))
         {
-            mouse = Input.mousePosition;
-            castPoint = Camera.main.ScreenPointToRay(mouse);
-            direction = (castPoint.direction - transform.position).normalized;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 500000f);
-            Debug.Log(direction);
             GainHealth();
         }
     }
@@ -93,5 +99,17 @@ public class ProtagonistaVida : MonoBehaviour
             Destroy(collision.gameObject);
         }
         
+    }
+
+    private IEnumerator imageShow(){
+        healthIcon.SetActive(true);
+        yield return new WaitForSeconds(1);
+        healthIcon.SetActive(false);
+    }
+
+    private IEnumerator noIconShow(){
+        noItem.SetActive(true);
+        yield return new WaitForSeconds(1);
+        noItem.SetActive(false);
     }
 }

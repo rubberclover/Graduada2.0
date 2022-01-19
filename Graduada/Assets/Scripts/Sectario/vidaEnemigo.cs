@@ -22,7 +22,7 @@ public class vidaEnemigo : MonoBehaviour
     void Start()
     {
         dropSystem = GameObject.FindGameObjectWithTag("inventario");
-        sonido = GameObject.Find("golpeAlSectario").GetComponent<AudioSource>();
+        sonido = GameObject.Find("golpeEsther").GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
     }

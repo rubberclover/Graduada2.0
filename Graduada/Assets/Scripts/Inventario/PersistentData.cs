@@ -14,6 +14,11 @@ public class PersistentData : MonoBehaviour
     private float conservasUber;
     private float conservasMuerte;
 
+    [SerializeField] private InventoryItemData pizzaItemData;
+    [SerializeField] private InventoryItemData beastItemData;
+
+    public bool dialogPlayed;
+
 
     void Awake(){
 
@@ -31,6 +36,8 @@ public class PersistentData : MonoBehaviour
         {
         DontDestroyOnLoad(gameObject);
         }
+
+        dialogPlayed = false;
     }
 
     public void returnWithUber(){
@@ -46,8 +53,16 @@ public class PersistentData : MonoBehaviour
     }
 
     public void returnHome(float conservas){
-                print("Ha vuelto con el Uber");
-        List<InventoryItem> inventoryObtained = GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventory;
+        print("Ha vuelto con el Uber");
+        List<InventoryItem> totalInventory = GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventory;
+        List<InventoryItem> inventoryObtained = new List<InventoryItem>();
+        
+        for(int i = 0; i < totalInventory.Count; i++){
+            if(totalInventory[i].data != pizzaItemData && totalInventory[i].data != beastItemData){
+                inventoryObtained.Add(totalInventory[i]);
+            }
+        }
+
         bool exist = false;
 
         int totalItems = 0;
@@ -95,7 +110,7 @@ public class PersistentData : MonoBehaviour
 
                 if(exist) break;
             }
-        
+
         }
 
         for(int i =0; i < stacksBorrar.Count; i++){
@@ -104,11 +119,40 @@ public class PersistentData : MonoBehaviour
 
         print("DESPUES DE HACER LOS CALCULOS DE STACK, HAY QUE METER: " + inventoryObtained.Count);
 
+        inventoryObtained.AddRange(GameObject.FindGameObjectWithTag("inventario").GetComponent<InventorySystem>().inventoryToLoad);
+
         for(int i = 0; i < inventoryObtained.Count; i ++) inventory.Add(inventoryObtained[i]);
 
     }
 
 
+    public List<InventoryItem> loadData(){
+        print("loading inventory");
+
+        List<InventoryItem> inventoryToLoad = new List<InventoryItem>();
+
+        for(int i = 0; i < inventory.Count; i++){
+            bool rmv = false;
+
+            if(inventory[i].data == pizzaItemData){
+                int pizzaStack = inventory[i].stackSize;
+                print("PIZZAAS " + pizzaStack);
+                rmv = true;
+            }else if(inventory[i].data == beastItemData){
+                int beastStack = inventory[i].stackSize;
+                print("BEAST " + beastStack);
+                rmv = true;    
+            }
+
+            if(rmv){
+                inventoryToLoad.Add(inventory[i]);
+                inventory.RemoveAt(i); 
+                i--;
+            } 
+        }
+
+        return inventoryToLoad;
+    }
 
 
     
