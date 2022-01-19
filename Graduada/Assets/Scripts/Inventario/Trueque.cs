@@ -22,6 +22,8 @@ public class Trueque : MonoBehaviour
     public InventoryItemData prueba;
     public GameObject inventario;
     private PersistentData inventory;
+
+    public GameObject noDisponible;
     
     void Start()
     {
@@ -119,6 +121,9 @@ public class Trueque : MonoBehaviour
             GameObject.Find("Cruz").SetActive(false);
             GameObject.Find("Tick").SetActive(false);
             textosOrdenados[anteriorIndex].SetActive(true);
+        }else{
+            noDisponible.SetActive(true);
+            StartCoroutine(desactivar(2));
         }        
         
     }
@@ -126,5 +131,10 @@ public class Trueque : MonoBehaviour
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
         textosOrdenados[anteriorIndex].SetActive(true);
+    }
+
+    private IEnumerator desactivar(int segundos){
+        yield return new WaitForSeconds(segundos);
+        noDisponible.SetActive(false);
     }
 }
