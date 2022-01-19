@@ -104,7 +104,8 @@ public class Trueque : MonoBehaviour
     public void accept(){
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
-        inventory.Add(objetos[0]);
+        print(objetos[0]);
+        inventory.AddT(objetos[0]);
         textosOrdenados[anteriorIndex].SetActive(true);
     }
     public void cancel(){
