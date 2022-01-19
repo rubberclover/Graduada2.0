@@ -15,6 +15,7 @@ public class DialogueTriggerEnterPiso : MonoBehaviour
      DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
      }
      haIniciado = true;
+     persistent.GetComponent<PersistentData>().dialogPlayed = true;
     }
 
     private void Awake() {
