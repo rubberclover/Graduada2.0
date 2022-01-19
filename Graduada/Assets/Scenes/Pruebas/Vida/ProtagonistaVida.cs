@@ -71,7 +71,7 @@ public class ProtagonistaVida : MonoBehaviour
             }else{
                 StartCoroutine(noIconShow());
             }
-        }else StartCoroutine(noIconShow());
+        }
     }
     private void Update()
     {

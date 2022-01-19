@@ -56,8 +56,8 @@ public class IsometricPlayerMovement : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
 
-            if(Input.GetButton("item2")){
-                if(!boostVelAct){beastPower();} else StartCoroutine(noIconShow());
+            if(Input.GetButton("item2") && !boostVelAct ){
+                beastPower();
             }
         }
 
