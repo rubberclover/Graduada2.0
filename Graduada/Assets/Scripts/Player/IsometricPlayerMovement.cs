@@ -38,6 +38,10 @@ public class IsometricPlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if(DialogueManager.GetInstance().dialogueIsPlaying){
+            return;
+        }
         if (characterController.isGrounded)
         {
             Vector3 rightMovement = right * speed * Time.deltaTime * Input.GetAxis("HorizontalStreet");

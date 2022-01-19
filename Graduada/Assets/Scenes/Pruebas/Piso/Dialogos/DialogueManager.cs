@@ -11,11 +11,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private TextMeshProUGUI displayNameText;
     private static DialogueManager instance;
 
     private Story currentStory;
 
-    private bool dialogueIsPlaying;
+    public bool dialogueIsPlaying {get; private set;}
+
+    private const string SPEAKER_TAG = "speaker";
 
     private void Awake() {
 
@@ -67,10 +71,33 @@ public class DialogueManager : MonoBehaviour
 
         if(currentStory.canContinue){
             dialogueText.text = currentStory.Continue();
+
+            HandleTags(currentStory.currentTags);
         }
         else{
 
             ExitDialogueMode();
+        }
+    }
+
+    private void HandleTags(List<string> currentTags){
+        foreach(string tag in currentTags){
+
+            string [] splitTag = tag.Split(':');
+            if(splitTag.Length !=2){
+                Debug.LogError("Error de TAG");
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch(tagKey){
+                case SPEAKER_TAG:
+                displayNameText.text = tagValue;
+                break;
+                default:
+                Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                break;
+            }
         }
     }
 
