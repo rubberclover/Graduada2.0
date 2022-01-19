@@ -125,14 +125,29 @@ public class DialogueManager : MonoBehaviour
 
         canContinueToNextLine = false;
 
+        bool isAddingRichTextTag = false;
+
         foreach (char letter in line.ToCharArray()){
 
             if(Input.GetKey(KeyCode.Return)){
                 dialogueText.text = line;
                 break;
             }
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+
+            if(letter == '<' || isAddingRichTextTag){
+
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+                if(letter == '>'){
+                    isAddingRichTextTag = false;
+                }
+
+            }
+            else {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+            
         }
 
         canContinueToNextLine = true;
