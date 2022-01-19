@@ -6,9 +6,15 @@ using Ink.Runtime;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Params")]
+
+    [SerializeField] private float typingSpeed = 0.04f;
+
     [Header("Dialogue UI")]
 
     [SerializeField] private GameObject dialoguePanel;
+
+    [SerializeField] private GameObject continueIcon;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
 
@@ -17,9 +23,13 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
 
+    private Coroutine displayLineCoroutine;
+
     public bool dialogueIsPlaying {get; private set;}
 
     private const string SPEAKER_TAG = "speaker";
+
+    private bool canContinueToNextLine = false;
 
     private void Awake() {
 
@@ -36,7 +46,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ( canContinueToNextLine && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
             StartCoroutine(Esperar());
@@ -70,7 +80,11 @@ public class DialogueManager : MonoBehaviour
     private void ContinueStory(){
 
         if(currentStory.canContinue){
-            dialogueText.text = currentStory.Continue();
+
+            if(displayLineCoroutine != null){
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
 
             HandleTags(currentStory.currentTags);
         }
@@ -102,5 +116,27 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator Esperar(){
         yield return new WaitForSeconds(1f);
+    }
+
+    private IEnumerator DisplayLine(string line){
+        dialogueText.text = "";
+
+        continueIcon.SetActive(false);
+
+        canContinueToNextLine = false;
+
+        foreach (char letter in line.ToCharArray()){
+
+            if(Input.GetKey(KeyCode.Return)){
+                dialogueText.text = line;
+                break;
+            }
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        canContinueToNextLine = true;
+        continueIcon.SetActive(true);
+
     }
 }
