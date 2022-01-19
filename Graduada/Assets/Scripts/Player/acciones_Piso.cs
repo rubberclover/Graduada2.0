@@ -14,6 +14,15 @@ public class acciones_Piso : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape) && !portatilActivo){
             Exit();
         }
+        if(Input.GetKey(KeyCode.Escape) && portatilActivo){ 
+            
+            portatil.SetActive(false);
+            Debug.Log(portatilActivo);
+            StartCoroutine(esperar(3));
+            Debug.Log(portatilActivo);
+            
+                
+        }
     }
     void OnTriggerStay (Collider col)
     {
@@ -26,15 +35,7 @@ public class acciones_Piso : MonoBehaviour
             }
             
         }
-        if(Input.GetKey(KeyCode.Escape)){ //Despues con el escape
-            if(col.CompareTag("portatil")){
-                portatil.SetActive(false);
-                Debug.Log(portatilActivo);
-                StartCoroutine(esperar(3));
-                Debug.Log(portatilActivo);
-            }
-                
-        }
+        
     }
 
     void Exit(){
