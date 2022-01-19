@@ -31,9 +31,9 @@ public class EnemyMovement : MonoBehaviour
         if (distance <= lookRadius)
         {
             _animator.SetBool("Detectado", true);
-            Debug.Log("Voy a correr");
+            //Debug.Log("Voy a correr");
             if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Correr")){
-                Debug.Log("Corro");
+               // Debug.Log("Corro");
             }
             agent.SetDestination(target.position);
         }

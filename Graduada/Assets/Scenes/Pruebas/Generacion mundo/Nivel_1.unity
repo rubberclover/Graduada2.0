@@ -7865,6 +7865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a61169755eab804b8bc3e520d2213d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  pushOnDamageSpeed: 0
   dropSystem: {fileID: 0}
   muerto: 0
 --- !u!1001 &1759872062
@@ -8992,6 +8994,10 @@ PrefabInstance:
     - target: {fileID: 4895700148228256028, guid: 23e3c4016bd27f94aa0afe4996398991, type: 3}
       propertyPath: m_AngularSpeed
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895700148228256096, guid: 23e3c4016bd27f94aa0afe4996398991, type: 3}
+      propertyPath: pushOnDamageSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4934744688045803008, guid: 23e3c4016bd27f94aa0afe4996398991, type: 3}
       propertyPath: m_RootOrder

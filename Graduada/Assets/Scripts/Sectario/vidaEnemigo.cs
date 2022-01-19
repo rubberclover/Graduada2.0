@@ -6,17 +6,25 @@ using UnityEngine.AI;
 public class vidaEnemigo : MonoBehaviour
 {
     //sistema dropeo
+  public Rigidbody rb;
+    public float pushOnDamageSpeed;
     public GameObject dropSystem;
     private int health = 2;
     AudioSource sonido;
     // Start is called before the first frame update
     Animator _animator;
     public bool muerto = false;
+ 
+
+       private void Awake() {
+        
+    }
     void Start()
     {
         dropSystem = GameObject.FindGameObjectWithTag("inventario");
         sonido = GameObject.Find("golpeAlSectario").GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -31,7 +39,9 @@ public class vidaEnemigo : MonoBehaviour
     {
         print("AAAAAAAAA");
         sonido.Play();
+        pushOnDamage();
         health--;
+        
         //animacion?
 
         if (health == 0)
@@ -60,5 +70,10 @@ public class vidaEnemigo : MonoBehaviour
 
     public void Drop(){
         dropSystem.GetComponent<Drops>().Drop(transform.position);
+    }
+
+    public void pushOnDamage(){      
+        Debug.Log("Me empujan");
+        rb.AddRelativeForce(0, 0, pushOnDamageSpeed, ForceMode.Impulse);
     }
 }
