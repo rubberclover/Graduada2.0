@@ -17,6 +17,8 @@ public class PersistentData : MonoBehaviour
     [SerializeField] private InventoryItemData pizzaItemData;
     [SerializeField] private InventoryItemData beastItemData;
 
+    public bool dialogPlayed;
+
 
     void Awake(){
 
@@ -34,6 +36,8 @@ public class PersistentData : MonoBehaviour
         {
         DontDestroyOnLoad(gameObject);
         }
+
+        dialogPlayed = false;
     }
 
     public void returnWithUber(){

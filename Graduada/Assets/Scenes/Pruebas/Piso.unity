@@ -7699,6 +7699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 83a5299ee80fbaf4a9c8955ebc6eb201, type: 3}
+  persistent: {fileID: 1404537347}
 --- !u!1001 &1192020388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9459,6 +9460,7 @@ MonoBehaviour:
     stackSize: 3
   pizzaItemData: {fileID: 11400000, guid: d2ef3f00036750547a2329e77737ecc8, type: 2}
   beastItemData: {fileID: 11400000, guid: be927eb2afa06864ea13d26111057027, type: 2}
+  dialogPlayed: 0
 --- !u!4 &1404537349
 Transform:
   m_ObjectHideFlags: 0
@@ -13302,6 +13304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 83a5299ee80fbaf4a9c8955ebc6eb201, type: 3}
+  persistent: {fileID: 0}
 --- !u!4 &2044671819
 Transform:
   m_ObjectHideFlags: 0
@@ -13442,6 +13445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 488228188}
+  persistent: {fileID: 1404537347}
   dialogueText: {fileID: 337758162}
   displayNameText: {fileID: 43308714}
 --- !u!4 &2051071093

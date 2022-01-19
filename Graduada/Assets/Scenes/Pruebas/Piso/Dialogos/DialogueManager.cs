@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private GameObject dialoguePanel;
 
+    [SerializeField] public GameObject persistent;
+
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     [SerializeField] private TextMeshProUGUI displayNameText;
@@ -28,11 +30,14 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("ERROR");
         }
         instance = this;
+
+        persistent = GameObject.Find("Persistent Inventory");
+
     }
 
     private void Update(){
 
-        if(!dialogueIsPlaying){
+        if(!dialogueIsPlaying || persistent.GetComponent<PersistentData>().dialogPlayed){
             return;
         }
 
@@ -75,7 +80,7 @@ public class DialogueManager : MonoBehaviour
             HandleTags(currentStory.currentTags);
         }
         else{
-
+            persistent.GetComponent<PersistentData>().dialogPlayed = true;
             ExitDialogueMode();
         }
     }

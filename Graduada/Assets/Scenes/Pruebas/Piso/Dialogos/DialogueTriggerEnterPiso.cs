@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DialogueTriggerEnterPiso : MonoBehaviour
 {
-   [Header("Ink JSON")]
+    [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
+
+    [SerializeField] public GameObject persistent;
 
     private bool haIniciado;
     private void Update() {
-     if(!haIniciado){
+     if(!haIniciado && !persistent.GetComponent<PersistentData>().dialogPlayed){
      DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
      }
      haIniciado = true;
@@ -17,5 +19,6 @@ public class DialogueTriggerEnterPiso : MonoBehaviour
 
     private void Awake() {
         haIniciado = false;
+        persistent = GameObject.Find("Persistent Inventory");
     }
 }
