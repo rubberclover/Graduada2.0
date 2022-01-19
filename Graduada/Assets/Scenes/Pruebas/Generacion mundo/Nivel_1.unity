@@ -8709,7 +8709,7 @@ GameObject:
   - component: {fileID: 2037516500}
   - component: {fileID: 2037516501}
   m_Layer: 0
-  m_Name: golpeAlSectario
+  m_Name: golpeEsther
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
