@@ -27,6 +27,7 @@ public class Trueque : MonoBehaviour
     
     void Start()
     {
+       inventario = GameObject.Find("Persistent Inventory");
        inventory = inventario.GetComponent<PersistentData>();
        inventory.AddT(prueba);
        orden = new List<GameObject>();
