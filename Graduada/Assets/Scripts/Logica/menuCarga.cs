@@ -26,15 +26,7 @@ public class menuCarga : MonoBehaviour
     {
         if(active){
             int index = (int)(Time.time * fps) % frames.Length;
-
             GetComponent<Image>().sprite= frames[index];
-
-            //GetComponent<RawImage>().texture = frames[index];
-
-            //GetComponent<Material>().mainTexture = frames[index];
-
-            //GetComponent<Renderer>().material.mainTexture = frames[index];
-
         }
     }
     
