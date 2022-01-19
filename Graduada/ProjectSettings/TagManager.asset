@@ -26,6 +26,7 @@ TagManager:
   - object
   - inventario
   - persistent
+  - portatil
   layers:
   - Default
   - TransparentFX

@@ -13,9 +13,14 @@ public class Trueque : MonoBehaviour
     private List<GameObject> contactos;
     private int anteriorIndex = 5;
     public List<GameObject> texto;
+    public List<GameObject> textosOrdenados;
+    public List<InventoryItemData> objetos;
+    public GameObject inventario;
+    private PersistentData inventory;
     
     void Start()
     {
+       inventory = inventario.GetComponent<PersistentData>();
        orden = new List<GameObject>();
        nums = new List<int>();
        ordenContactos = new List<int>();
@@ -35,8 +40,11 @@ public class Trueque : MonoBehaviour
     void ordenar(List<GameObject> dialogos){
         int index = Random.Range(0, dialogos.Count);
         GameObject conver = dialogos[index];
+        GameObject abandono = texto[index];
         dialogos.RemoveAt(index);
+        texto.RemoveAt(index);
         orden.Add(conver);
+        textosOrdenados.Add(abandono);
         if (dialogos.Count >= 1) {
             ordenar(dialogos);
         }
@@ -94,15 +102,14 @@ public class Trueque : MonoBehaviour
     }
 
     public void accept(){
-        Debug.Log("asdsfñkuaszdghfhase");
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
-        texto[anteriorIndex].SetActive(true);
+        inventory.Add(objetos[0]);
+        textosOrdenados[anteriorIndex].SetActive(true);
     }
     public void cancel(){
-        Debug.Log("aldiodufgta");
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
-        texto[anteriorIndex].SetActive(true);
+        textosOrdenados[anteriorIndex].SetActive(true);
     }
 }

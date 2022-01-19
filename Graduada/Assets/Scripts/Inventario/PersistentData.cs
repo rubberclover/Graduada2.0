@@ -158,6 +158,7 @@ public class PersistentData : MonoBehaviour
     
     public void Add(InventoryItemData referenceData)
     {
+        Debug.Log(referenceData);
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
             value.AddToStack();
         }
