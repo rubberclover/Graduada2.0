@@ -33,6 +33,13 @@ public class MenuPausa : MonoBehaviour
           StartCoroutine(Esperar());
        }
      }
+     if(Input.GetKeyDown(KeyCode.I) && !GameIsPaused){
+       MenuInventarioUI.SetActive(true);
+       Time.timeScale = 0f;
+       GameIsPaused = true;
+       miInventario=cambita.GetComponent<MenuInventario>();
+       miInventario.GameIsInControles = true;
+     }
 
       if(Input.GetKeyDown(KeyCode.Return) &&  GameIsPaused && GameIsInMenuPause && EventSystem.current.currentSelectedGameObject!=null){
        

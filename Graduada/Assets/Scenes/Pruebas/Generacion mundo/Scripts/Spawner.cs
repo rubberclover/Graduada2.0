@@ -38,9 +38,7 @@ public class Spawner : MonoBehaviour
                     }else{
                         StartCoroutine(esperar(Random.Range(1,5)));
                         if(Templates.bar == false){
-                            Debug.Log("Spawneo bar" + Templates.bar);
                             Templates.bar = true;
-                            Debug.Log("Spawneo bar" + Templates.bar);
                             Instantiate(templates.BottomRooms[tamano-1], transform.position, templates.BottomRooms[tamano-1].transform.rotation);
                         }
                     }
@@ -51,9 +49,7 @@ public class Spawner : MonoBehaviour
                     if(rand == tamano -1 && Templates.bar == false){
                         StartCoroutine(esperar(Random.Range(1,5)));
                         if(Templates.bar == false){
-                            Debug.Log("Spawneo bar" + Templates.bar);
                             Templates.bar = true;
-                            Debug.Log("Spawneo bar" + Templates.bar);
                         }
                     } 
                     else if(rand == tamano -1 && Templates.bar == true) rand = rand - 1;

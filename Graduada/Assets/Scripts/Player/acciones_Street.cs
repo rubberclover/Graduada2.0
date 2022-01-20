@@ -16,6 +16,7 @@ public class acciones_Street : MonoBehaviour
     private GameObject item;
     private ItemObject itemobject;
     private vidaEnemigo vidaEnemigo;
+    public GameObject casera;
     bool ataque;
 
     void Start()
@@ -50,6 +51,9 @@ public class acciones_Street : MonoBehaviour
 
         if(Input.GetButton("interact")){
             if(pick) pickup();
+        }
+        if(Input.GetKeyDown(KeyCode.Z)){
+            Instantiate(casera, transform.position + new Vector3(2f,2f,2f), transform.rotation);
         }
     }
 

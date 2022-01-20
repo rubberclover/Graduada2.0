@@ -5376,7 +5376,7 @@ GameObject:
   - component: {fileID: 776374029}
   m_Layer: 5
   m_Name: Portatil
-  m_TagString: portatil
+  m_TagString: trueque
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,9 +16,10 @@ public class menuCarga : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Protagonista");
-        player.GetComponent<IsometricPlayerMovement>().speed = 0;
+        player.GetComponent<IsometricPlayerMovement>().speed = 12;
         active = true;
-        StartCoroutine(load());
+        inventory.GetComponent<InventorySystem>().inventoryLoad();
+        //StartCoroutine(load());
     }
 
     
@@ -32,10 +33,10 @@ public class menuCarga : MonoBehaviour
     
     private IEnumerator load(){
         yield return new WaitForSeconds(11);
-        inventory.GetComponent<InventorySystem>().inventoryLoad();
-        gameObject.SetActive(false);
-        active = false;
-        player.GetComponent<IsometricPlayerMovement>().speed = 12;
+        //inventory.GetComponent<InventorySystem>().inventoryLoad();
+        //gameObject.SetActive(false);
+        //active = false;
+        //player.GetComponent<IsometricPlayerMovement>().speed = 12;
     }
 }
 

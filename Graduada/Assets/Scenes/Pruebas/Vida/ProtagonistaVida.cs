@@ -91,7 +91,7 @@ public class ProtagonistaVida : MonoBehaviour
     void OnCollisionEnter(UnityEngine.Collision collision)
     {
 
-        if (collision.gameObject.name == "Proyectil(Clone)"  )
+        if (collision.gameObject.name == "Proyectil(Clone)" || collision.gameObject.name == "Bolsa de basura(Clone)" )
         {   
             sonido.Play();
             Debug.Log("choca");

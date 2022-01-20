@@ -20,7 +20,7 @@ public class vidaEnemigo : MonoBehaviour
       
     void Start()
     {
-         jugador = GameObject.FindGameObjectWithTag("Player");
+        jugador = GameObject.FindGameObjectWithTag("Player");
         dropSystem = GameObject.FindGameObjectWithTag("inventario");
         sonido = GameObject.Find("golpeEsther").GetComponent<AudioSource>();
         _animator = gameObject.GetComponent<Animator>();
@@ -37,10 +37,10 @@ public class vidaEnemigo : MonoBehaviour
 
     public void LoseHealth(acciones_Street street)
     {
-        print("AAAAAAAAA");
+        print("caguen to");
         sonido.Play();
          
-        pushOnDamage();
+        //pushOnDamage();
         health--;
         
         //animacion?
@@ -77,14 +77,6 @@ public class vidaEnemigo : MonoBehaviour
         rb.AddForce(jugador.transform.forward * pushOnDamageSpeed,ForceMode.Impulse);
         Debug.Log("Me empujan");
 
-        print("Forward" + jugador.transform.forward);
-     /* 
-       Quaternion position = jugador.transform.rotation;
-      Vector3 movimiento = position * Vector3.forward;
-     print(movimiento);
-                   Vector3 move = movimiento * pushOnDamageSpeed;
-                    print(move);  */
-//transform.Translate(jugador.transform.forward * pushOnDamageSpeed * Time.deltaTime);
- 
+        print("Forward" + jugador.transform.forward); 
     }
 }
