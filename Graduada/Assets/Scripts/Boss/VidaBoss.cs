@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class vidaEnemigo : MonoBehaviour
+public class VidaBoss : MonoBehaviour
 {
-    //sistema dropeo
+  //sistema dropeo
   Rigidbody rb;
-    public float pushOnDamageSpeed;
+    public float pushOnDamageSpeed = 1;
     public GameObject dropSystem;
-    public int health = 3;
+    public int health = 10;
     GameObject jugador;
     AudioSource sonido;
     // Start is called before the first frame update
@@ -85,6 +85,5 @@ public class vidaEnemigo : MonoBehaviour
                    Vector3 move = movimiento * pushOnDamageSpeed;
                     print(move);  */
 //transform.Translate(jugador.transform.forward * pushOnDamageSpeed * Time.deltaTime);
- 
     }
 }
