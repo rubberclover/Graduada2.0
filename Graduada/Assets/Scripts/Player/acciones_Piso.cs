@@ -7,7 +7,15 @@ public class acciones_Piso : MonoBehaviour
     public GameObject portatil;
     private bool portatilActivo = false;
     ChangeLevelLogic level = new ChangeLevelLogic();
+    public GameObject panelInventario;
 
+    
+
+
+    void Start()
+    {
+        panelInventario = GameObject.Find("PanelInventario");
+    }
 
     void Update()
     {
@@ -15,7 +23,7 @@ public class acciones_Piso : MonoBehaviour
             Exit();
         }
         if(Input.GetKey(KeyCode.Escape) && portatilActivo){ 
-            
+            panelInventario.GetComponent<PanelHome>().UpdateInventory();
             portatil.SetActive(false);
             Debug.Log(portatilActivo);
             StartCoroutine(esperar(3));

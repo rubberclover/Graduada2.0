@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trueque : MonoBehaviour
 {
+    public GameObject panelInventario;
     // Start is called before the first frame update
     public List<GameObject> dialogos;
     public List<GameObject> todos;
@@ -29,7 +30,7 @@ public class Trueque : MonoBehaviour
     {
        inventario = GameObject.Find("Persistent Inventory");
        inventory = inventario.GetComponent<PersistentData>();
-       inventory.AddT(prueba);
+       //inventory.AddT(prueba);
        orden = new List<GameObject>();
        nums = new List<int>();
        ordenContactos = new List<int>();
