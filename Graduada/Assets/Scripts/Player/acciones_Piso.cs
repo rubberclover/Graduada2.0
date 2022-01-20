@@ -12,8 +12,16 @@ public class acciones_Piso : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(KeyCode.Escape) && !portatilActivo){
-            Debug.Log(portatilActivo);
             Exit();
+        }
+        if(Input.GetKey(KeyCode.Escape) && portatilActivo){ 
+            
+            portatil.SetActive(false);
+            Debug.Log(portatilActivo);
+            StartCoroutine(esperar(3));
+            Debug.Log(portatilActivo);
+            
+                
         }
     }
     void OnTriggerStay (Collider col)
@@ -24,20 +32,10 @@ public class acciones_Piso : MonoBehaviour
             if(col.CompareTag("portatil")){
                  portatil.SetActive(true);
                  portatilActivo = true;
-                 Debug.Log(portatilActivo);
             }
             
         }
-        if(Input.GetKey(KeyCode.O)){ //Despues con el escape
-            if(col.CompareTag("portatil")){
-                portatil.SetActive(false);
-                StartCoroutine(esperar(10));
-                Debug.Log(portatilActivo);
-                portatilActivo = false;
-                Debug.Log(portatilActivo);
-            }
-                
-        }
+        
     }
 
     void Exit(){
@@ -46,6 +44,8 @@ public class acciones_Piso : MonoBehaviour
 
     private IEnumerator esperar(int segundos){
         yield return new WaitForSeconds(segundos);
+        portatilActivo = false;
+        Debug.Log("mirameeeee");
     }
 
 }

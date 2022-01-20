@@ -15,12 +15,21 @@ public class Trueque : MonoBehaviour
     public List<GameObject> texto;
     public List<GameObject> textosOrdenados;
     public List<InventoryItemData> objetos;
+    public List<InventoryItemData> objetosOrdenados;
+
+    public List<InventoryItemData> objetosDar;
+    public List<InventoryItemData> objetosDarOrdenados;
+    public InventoryItemData prueba;
     public GameObject inventario;
     private PersistentData inventory;
+
+    public GameObject noDisponible;
     
     void Start()
     {
+       inventario = GameObject.Find("Persistent Inventory");
        inventory = inventario.GetComponent<PersistentData>();
+       inventory.AddT(prueba);
        orden = new List<GameObject>();
        nums = new List<int>();
        ordenContactos = new List<int>();
@@ -28,12 +37,9 @@ public class Trueque : MonoBehaviour
        for(int i = 0; i <4; i++){
            nums.Add(i);
        } 
-       arrayNum(nums);
+       if(dialogos.Count > 1) arrayNum(nums);
        activarContactos();
        ordenar(dialogos);
-    }
-    void Update(){
-        if(orden.Count < 4) ordenar(dialogos);
     }
 
 
@@ -41,10 +47,16 @@ public class Trueque : MonoBehaviour
         int index = Random.Range(0, dialogos.Count);
         GameObject conver = dialogos[index];
         GameObject abandono = texto[index];
+        InventoryItemData obj = objetos[index];
+        InventoryItemData objDar = objetosDar[index];
         dialogos.RemoveAt(index);
         texto.RemoveAt(index);
+        objetos.RemoveAt(index);
+        objetosDar.RemoveAt(index);
         orden.Add(conver);
         textosOrdenados.Add(abandono);
+        objetosOrdenados.Add(obj);
+        objetosDarOrdenados.Add(objDar);
         if (dialogos.Count >= 1) {
             ordenar(dialogos);
         }
@@ -59,6 +71,7 @@ public class Trueque : MonoBehaviour
         }
     }
     void activarContactos(){
+
         int j = 0;
         for(int i=0; i<16; i += 4){
             contactos.Add(todos[i+ordenContactos[j]]);
@@ -67,9 +80,6 @@ public class Trueque : MonoBehaviour
         for(int i=0; i<4; i++){
             contactos[i].SetActive(true);
         }
-    }
-    void Awake(){
-        DontDestroyOnLoad(gameObject);
     }
 
     public void contacto1(){
@@ -102,15 +112,25 @@ public class Trueque : MonoBehaviour
     }
 
     public void accept(){
-        GameObject.Find("Cruz").SetActive(false);
-        GameObject.Find("Tick").SetActive(false);
-        print(objetos[0]);
-        inventory.AddT(objetos[0]);
-        textosOrdenados[anteriorIndex].SetActive(true);
+        if(inventory.RemoveT(objetosDarOrdenados[anteriorIndex]) != null ){
+            inventory.AddT(objetosOrdenados[anteriorIndex]);
+            GameObject.Find("Cruz").SetActive(false);
+            GameObject.Find("Tick").SetActive(false);
+            textosOrdenados[anteriorIndex].SetActive(true);
+        }else{
+            noDisponible.SetActive(true);
+            StartCoroutine(desactivar(2));
+        }        
+        
     }
     public void cancel(){
         GameObject.Find("Cruz").SetActive(false);
         GameObject.Find("Tick").SetActive(false);
         textosOrdenados[anteriorIndex].SetActive(true);
+    }
+
+    private IEnumerator desactivar(int segundos){
+        yield return new WaitForSeconds(segundos);
+        noDisponible.SetActive(false);
     }
 }

@@ -1,4 +1,4 @@
-Ein? Que ha sido eso?? Dónde está mi portátil? Juraría haberlo dejado aquí ayer... #speaker: Esther
+Ein? Que ha sido eso?? Dónde está mi cargador? Juraría haberlo dejado aquí ayer... #speaker: Esther
 ¿Dónde podría---- ? AHHHHHHHHHHHHHHHHHHH! UNA CUCARACHA EN MI APARTAMENTO?
 Ya lo que me faltaba. ¿Dónde he dejado el matamoscas?
 Menudo recibimiento, nada más aparecer y ni me invitas a un té antes de matarme. #speaker: Cucaracha
